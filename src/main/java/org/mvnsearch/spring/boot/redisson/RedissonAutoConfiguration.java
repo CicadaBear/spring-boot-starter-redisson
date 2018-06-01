@@ -1,6 +1,6 @@
 package org.mvnsearch.spring.boot.redisson;
 
-import org.redisson.*;
+import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 import org.redisson.config.SentinelServersConfig;
@@ -41,7 +41,7 @@ public class RedissonAutoConfiguration {
             SingleServerConfig singleServerConfig = config.useSingleServer();
             singleServerConfig.setAddress(redisProperties.getHost() + ":" + redisProperties.getPort());
             singleServerConfig.setDatabase(redisProperties.getDatabase());
-            if (redisProperties.getPassword() != null) {
+            if (redisProperties.getPassword() != null && !redisProperties.getPassword().equals("")) {
                 singleServerConfig.setPassword(redisProperties.getPassword());
             }
         }
